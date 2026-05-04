@@ -49,7 +49,12 @@ python ~/.claude/skills-management/cli/main.py sync
 
 # 生成报告
 python ~/.claude/skills-management/cli/main.py report
+
+# 配置使用追踪（自动追踪技能调用）
+python ~/.claude/skills-management/cli/main.py hook-setup
 ```
+
+> **注意**: `hook-setup` 会自动配置 Claude Code 的钩子，使系统能够自动追踪技能的使用情况。配置后需要**重启 Claude Code** 使钩子生效。
 
 ### Windows 快捷方式
 
@@ -99,6 +104,30 @@ discovery:
 2. **NPM 安装** - `npm install -g @your-org/skill`
 3. **项目本地** - 在项目目录的 `./.claude/skills/` 创建
 4. **Git 克隆** - 克隆包含技能的仓库
+
+### 使用追踪（Hook 机制）
+
+系统通过 Claude Code 的钩子自动追踪技能使用情况：
+
+- `UserPromptExpansion` - 捕获技能调用开始（slash command）
+- `PreToolUse` - 捕获 Skill 工具调用开始
+- `PostToolUse` - 捕获 Skill 工具调用完成（记录成功/失败）
+
+#### 配置使用追踪
+
+```bash
+# 运行一次即可自动配置 Claude Code 钩子
+python ~/.claude/skills-management/cli/main.py hook-setup
+```
+
+配置后，每次使用技能都会自动记录到 `skills_usage.yaml`。
+
+**追踪的信息**：
+- 技能名称
+- 使用时间
+- 持续时间
+- 成功/失败状态
+- 使用趋势
 
 ### 技能文件格式
 

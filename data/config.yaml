@@ -1,0 +1,105 @@
+cleanup:
+  archive_path: C:\Users\roucy\.claude\skills-management\archive
+  auto_archive: true
+  backup_before_removal: true
+data_retention:
+  archive_check_frequency: daily
+  auto_archive: true
+  compress_after_months: 6
+  delete_after_years: null
+  hot_period_months: 2
+  warm_period_months: 6
+discovery:
+  auto_register: true
+  enabled: true
+  ignore_paths:
+  - '**/node_modules/**/test/**'
+  - '**/node_modules/**/examples/**'
+  - '**/.git/**'
+  notifications:
+    on_new_skill: true
+    on_skill_removed: true
+    on_skill_update: true
+  require_validation: true
+  scan_frequency: automatic
+  scan_interval_minutes: 5
+  skill_types:
+    claude_md:
+      enabled: true
+      file_patterns:
+      - CLAUDE.md
+      - claude.md
+      parser: claude_md
+      priority: 1
+    agent_md:
+      enabled: true
+      file_patterns:
+      - AGENT.md
+      - agent.md
+      parser: agent_md
+      priority: 2
+    skill_md:
+      enabled: true
+      file_patterns:
+      - SKILL.md
+      - skill.md
+      parser: skill_md
+      priority: 3
+  scan_paths:
+  - path: C:\Users\roucy\.claude\plugins\local\skills
+    recursive: true
+    skill_patterns:
+    - '*/SKILL.md'
+    type: local
+  - path: ./node_modules
+    recursive: true
+    skill_patterns:
+    - '*/SKILL.md'
+    type: npm_local
+  - path: .
+    recursive: false
+    skill_patterns:
+    - CLAUDE.md
+    - claude.md
+    - AGENT.md
+    - agent.md
+    type: project
+performance:
+  cache_warm_queries: true
+  max_memory_mb: 10
+  preload_archives: false
+reporting:
+  include_charts: true
+  include_roi_metrics: true
+  monthly_cleanup_day: 1
+  output_path: C:\Users\roucy\.claude\skills-management\reports
+  weekly_report_day: sunday
+roi:
+  auto_track_time: true
+  baseline_period_days: 14
+  benefit_weights:
+    discovery_improvement: 0.8
+    quality_improvement: 1.2
+    success_rate_improvement: 1.5
+    time_saved: 1.0
+  development_cost_amortization_months: 12
+  enabled: true
+  hourly_rate: 50
+  include_projections: true
+  measurement_period_days: 30
+  projection_months: 12
+  roi_report_frequency: monthly
+similarity:
+  cache_duration_hours: 168
+  cache_enabled: true
+  weights:
+    content: 0.1
+    description: 0.4
+    name: 0.3
+    tags: 0.2
+system:
+  registry_path: C:\Users\roucy\.claude\skills-management\data\hot\skills_registry.yaml
+  similarity_threshold: 0.7
+  underperforming_threshold: 0.7
+  unused_threshold_days: 90
+  usage_path: C:\Users\roucy\.claude\skills-management\data\hot\skills_usage.yaml

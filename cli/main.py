@@ -106,10 +106,10 @@ def info(skill_name):
         click.echo(f"  最后使用: {stats.get('last_used', 'N/A')}")
 
         trend_icon = {
-            'increasing': '↗️',
-            'decreasing': '↘️',
-            'stable': '→'
-        }.get(stats.get('trend', 'stable'), '→')
+            'increasing': '->',
+            'decreasing': '<-',
+            'stable': '=='
+        }.get(stats.get('trend', 'stable'), '==')
 
         click.echo(f"  趋势: {trend_icon}")
 
@@ -204,10 +204,10 @@ def stats(period, top):
 
         for i, skill in enumerate(top_skills, 1):
             trend_icon = {
-                'increasing': '↗️',
-                'decreasing': '↘️',
-                'stable': '→'
-            }.get(skill.get('trend', 'stable'), '→')
+                'increasing': '->',
+                'decreasing': '<-',
+                'stable': '=='
+            }.get(skill.get('trend', 'stable'), '==')
 
             click.echo(f"  {i}. {skill['name']}")
             click.echo(f"     使用: {skill['usage_count']} 次 | 成功率: {skill['success_rate']:.1%} | {trend_icon}")
